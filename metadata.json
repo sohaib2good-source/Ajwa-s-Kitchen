@@ -1,0 +1,6 @@
+{
+  "name": "Ajwa's Kitchen",
+  "description": "Premium home-based Pakistani food brand offering freshly prepared savoury delights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
