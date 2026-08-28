@@ -12,9 +12,16 @@ export function Footer() {
           
           {/* Brand */}
           <div className="col-span-1 md:col-span-1 space-y-4">
-            <h3 className="font-display text-2xl font-bold text-white tracking-tight">
-              {config.businessName}
-            </h3>
+            <div className="flex items-center gap-3">
+              <img 
+                src="/logo.jpg" 
+                alt="Ajwa's Kitchen Logo" 
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#A67C52]/40 shadow-md"
+              />
+              <h3 className="font-display text-2xl font-bold text-white tracking-tight">
+                {config.businessName}
+              </h3>
+            </div>
             <p className="text-stone-400 text-sm leading-relaxed max-w-xs">
               {config.tagline}
             </p>

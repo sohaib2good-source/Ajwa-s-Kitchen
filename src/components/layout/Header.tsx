@@ -29,11 +29,13 @@ export function Header() {
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-2 font-display font-bold text-xl tracking-tight text-[#1B4332] hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-[#1B4332] rounded-full flex items-center justify-center">
-                <span className="text-[#FDFBF7] font-sans font-bold text-xs">A</span>
-              </div>
-              {config.businessName}
+            <Link to="/" className="flex items-center gap-3 font-display font-bold text-xl tracking-tight text-[#1B4332] hover:opacity-85 transition-opacity">
+              <img 
+                src="/logo.jpg" 
+                alt="Ajwa's Kitchen Logo" 
+                className="w-10 h-10 rounded-full object-cover shadow-sm border border-[#E6E0D4]"
+              />
+              <span className="text-xl sm:text-2xl font-bold tracking-tight">{config.businessName}</span>
             </Link>
           </div>
 

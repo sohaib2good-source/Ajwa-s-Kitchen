@@ -106,6 +106,13 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/logo.jpg" 
+                alt="Ajwa's Kitchen Authentic Home Cooking" 
+                className="w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-lg border-4 border-[#FDFBF7] object-cover ring-2 ring-[#E6E0D4]"
+              />
+            </div>
             <h2 className="font-display text-4xl font-bold text-[#1B4332] mb-6">A Little Taste of Home</h2>
             <p className="text-lg text-[#5C5C5C] leading-relaxed max-w-3xl mx-auto">
               Ajwa’s Kitchen is a home-based food business focused on preparing delicious savoury snacks fresh for every order. We believe in the simple joy of homemade taste. Every item is carefully prepared with good ingredients, ensuring you get the freshest flavours at affordable prices. Enjoy convenient ordering and food made specifically for you.

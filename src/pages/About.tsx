@@ -23,6 +23,13 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white rounded-3xl p-8 md:p-16 shadow-xl border border-[#E6E0D4]"
         >
+          <div className="flex justify-center -mt-16 sm:-mt-24 mb-8">
+            <img 
+              src="/logo.jpg" 
+              alt="Ajwa's Kitchen Logo" 
+              className="w-28 h-28 sm:w-36 sm:h-36 rounded-full shadow-2xl border-4 border-white object-cover ring-2 ring-[#E6E0D4]"
+            />
+          </div>
           <div className="prose prose-lg prose-stone max-w-none">
             <p className="lead text-xl text-[#5C5C5C] leading-relaxed mb-8">
               Ajwa’s Kitchen is a home-based food business focused on preparing delicious Pakistani savoury snacks fresh for every order. We believe that the best food doesn't come from a factory, but from a kitchen filled with warmth and care.
