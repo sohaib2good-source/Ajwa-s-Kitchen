@@ -42,7 +42,7 @@ export function About() {
             
             <h2 className="font-display text-3xl font-bold text-[#1B4332] mt-12 mb-6">Careful Preparation</h2>
             <p className="text-[#5C5C5C] mb-6">
-              Every kebab, samosa, and cutlet is made with careful attention to detail. We use good ingredients and traditional recipes to ensure that every bite brings a little taste of home to your table. 
+              Every kebab, samosa, and chicken potato cutlet is made with careful attention to detail. We use good ingredients and traditional recipes to ensure that every bite brings a little taste of home to your table. 
             </p>
             
             <h2 className="font-display text-3xl font-bold text-[#1B4332] mt-12 mb-6">Accessible Quality</h2>

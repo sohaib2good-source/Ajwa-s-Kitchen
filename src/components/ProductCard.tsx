@@ -37,8 +37,21 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <div className="text-right flex-shrink-0">
-            <span className="block text-lg font-bold text-[#1B4332]">{product.price}</span>
-            <span className="block text-xs text-[#968F80] font-medium">{product.quantityStr}</span>
+            {product.priceTiers && product.priceTiers.length > 0 ? (
+              <div className="flex flex-col items-end gap-0.5">
+                {product.priceTiers.map((tier, idx) => (
+                  <div key={idx} className="flex items-baseline justify-end gap-1.5 leading-tight">
+                    <span className="text-xs text-[#7A7265] font-medium">{tier.quantity}</span>
+                    <span className="text-sm md:text-base font-bold text-[#1B4332]">{tier.price}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <span className="block text-lg font-bold text-[#1B4332]">{product.price}</span>
+                <span className="block text-xs text-[#968F80] font-medium">{product.quantityStr}</span>
+              </>
+            )}
           </div>
         </div>
         

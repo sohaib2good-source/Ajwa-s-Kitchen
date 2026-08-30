@@ -35,7 +35,7 @@ export function HowItWorks() {
               <div>
                 <h3 className="text-2xl font-bold text-[#1B4332] mb-3">Choose Your Favourites</h3>
                 <p className="text-[#5C5C5C] text-lg leading-relaxed">
-                  Browse our Menu section to see the variety of homemade savoury snacks we offer. From our classic Chicken Shami Kebabs to crispy samosas and cutlets, decide what you'd like to enjoy.
+                  Browse our Menu section to see the variety of homemade savoury snacks we offer. From our classic Chicken Shami Kebabs to crispy samosas and chicken potato cutlets, decide what you'd like to enjoy.
                 </p>
               </div>
             </div>

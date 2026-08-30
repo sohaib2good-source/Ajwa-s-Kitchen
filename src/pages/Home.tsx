@@ -70,24 +70,24 @@ export function Home() {
               <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg" 
-                  alt="Samosa" 
+                  alt="Mini Aloo Samosa" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Samosa</h3>
+                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Mini Aloo Samosa</h3>
                   <p className="text-[#A67C52] text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Golden & Crispy</p>
                 </div>
               </div>
               <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Lula_kebab_2.jpg" 
-                  alt="Gola Kebab" 
+                  src="/Gola-kebab.jpeg" 
+                  alt="Chicken Gola Kebab" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Gola Kebab</h3>
+                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Chicken Gola Kebab</h3>
                   <p className="text-[#A67C52] text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Tender & Juicy</p>
                 </div>
               </div>

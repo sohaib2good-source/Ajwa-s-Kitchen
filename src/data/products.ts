@@ -1,9 +1,15 @@
+export interface PriceTier {
+  quantity: string;
+  price: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   price: string;
   quantityStr: string;
+  priceTiers?: PriceTier[];
   image: string;
   available: boolean;
 }
@@ -13,54 +19,144 @@ export const products: Product[] = [
     id: "chicken-shami-kebab",
     name: "Chicken Shami Kebab",
     description: "Tender, flavourful Pakistani-style chicken shami kebabs prepared fresh to order.",
-    price: "[Price]",
-    quantityStr: "per 12 pieces",
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Shami_Kebab.jpg", // Using a relevant placeholder
+    price: "Rs. 650",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 650" },
+      { quantity: "24 pieces", price: "Rs. 1,250" }
+    ],
+    image: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Shami_Kebab.jpg",
     available: true
   },
   {
-    id: "kebab",
-    name: "Classic Kebab",
-    description: "Deliciously seasoned homemade kebabs with a satisfying savoury flavour.",
-    price: "[Price]",
-    quantityStr: "per 12 pieces",
-    image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Pakistani_Food_Beef_Kabobs.jpg", // Placeholder
+    id: "chicken-gola-kebab",
+    name: "Chicken Gola Kebab",
+    description: "Juicy, melt-in-the-mouth seasoned homemade chicken gola kebabs prepared fresh to order.",
+    price: "Rs. 750",
+    quantityStr: "6 pcs",
+    priceTiers: [
+      { quantity: "6 pcs", price: "Rs. 750" },
+      { quantity: "12 pcs", price: "Rs. 1,450" },
+      { quantity: "24 pcs", price: "Rs. 2,800" }
+    ],
+    image: "/Gola-kebab.jpeg",
     available: true
   },
   {
-    id: "cutlets",
-    name: "Cutlets",
-    description: "Crispy, golden and flavourful homemade potato cutlets.",
-    price: "[Price]",
-    quantityStr: "per 12 pieces",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Aloo_Tikki_served_with_chutneys.jpg",
+    id: "chicken-potato-cutlets",
+    name: "Chicken Potato Cutlets",
+    description: "Crispy, golden and flavourful homemade chicken potato cutlets.",
+    price: "Rs. 650",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 650" },
+      { quantity: "24 pieces", price: "Rs. 1,200" }
+    ],
+    image: "/chicken-cutlets.jpeg",
     available: true
   },
   {
-    id: "samosa",
-    name: "Crispy Samosas",
-    description: "Crispy savoury samosas, perfect for tea time, gatherings and snacks.",
-    price: "[Price]",
-    quantityStr: "per 12 pieces",
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg", // Placeholder
+    id: "mini-aloo-samosa",
+    name: "Mini Aloo Samosa",
+    description: "Crispy, golden mini savoury aloo samosas, perfect for tea time, gatherings and snacks.",
+    price: "Rs. 500",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 500" },
+      { quantity: "24 pieces", price: "Rs. 950" }
+    ],
+    image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
+    available: true
+  },
+  {
+    id: "cheese-samosa",
+    name: "Cheese Samosa",
+    description: "Crispy golden triangular pastries filled with a rich, gooey melted cheese blend.",
+    price: "Rs. 950",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 950" },
+      { quantity: "24 pieces", price: "Rs. 1,750" }
+    ],
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    available: true
+  },
+  {
+    id: "chicken-samosa",
+    name: "Chicken Samosa",
+    description: "Crispy pastry loaded with finely shredded, deliciously seasoned savoury chicken filling.",
+    price: "Rs. 850",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 850" },
+      { quantity: "24 pieces", price: "Rs. 1,250" }
+    ],
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    available: true
+  },
+  {
+    id: "arabian-samosa",
+    name: "Arabian Samosa",
+    description: "Fragrant Arabian-inspired spiced savory filling encased in a crisp, delicate golden wrapper.",
+    price: "Rs. 550",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 550" },
+      { quantity: "24 pieces", price: "Rs. 1,000" }
+    ],
+    image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
+    available: true
+  },
+  {
+    id: "chicken-pattie",
+    name: "Chicken Pattie",
+    description: "Flaky, buttery bakery-style puff pastry stuffed with savoury spiced chicken filling.",
+    price: "Rs. 900",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 900" },
+      { quantity: "24 pieces", price: "Rs. 1,800" }
+    ],
+    image: "/chicken-pattie.jpg",
+    available: true
+  },
+  {
+    id: "chicken-spring-rolls",
+    name: "Chicken Spring Rolls",
+    description: "Crisp golden handmade rolls packed with seasoned shredded chicken and fresh vegetables.",
+    price: "Rs. 800",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 800" },
+      { quantity: "24 pieces", price: "Rs. 1,550" }
+    ],
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
+    available: true
+  },
+  {
+    id: "chicken-box-pattie",
+    name: "Chicken Box Pattie",
+    description: "Crispy breaded square parcel patties loaded with creamy, spicy chicken filling.",
+    price: "Rs. 1,050",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 1,050" },
+      { quantity: "24 pieces", price: "Rs. 2,000" }
+    ],
+    image: "/chicken-box-pattie.jpg",
     available: true
   },
   {
     id: "nuggets",
     name: "Chicken Nuggets",
     description: "Crispy bite-sized nuggets loved by kids and adults alike.",
-    price: "[Price]",
-    quantityStr: "per 12 pieces",
-    image: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=800", // Placeholder
-    available: true
-  },
-  {
-    id: "savoury-patties",
-    name: "Savoury Patties",
-    description: "Flaky, delicious savoury patties prepared fresh for every order.",
-    price: "[Price]",
-    quantityStr: "per 6 pieces",
-    image: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&q=80&w=800", // Placeholder
+    price: "Rs. 650",
+    quantityStr: "12 pieces",
+    priceTiers: [
+      { quantity: "12 pieces", price: "Rs. 650" },
+      { quantity: "24 pieces", price: "Rs. 1,250" }
+    ],
+    image: "/chicken-nuggets.jpg",
     available: true
   }
 ];
