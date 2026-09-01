@@ -7,7 +7,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const primaryTier = product.priceTiers && product.priceTiers.length > 0 ? product.priceTiers[0] : null;
+  const tiers = product.priceTiers && product.priceTiers.length > 0 ? product.priceTiers : null;
 
   return (
     <motion.div 
@@ -35,40 +35,25 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
       
       <div className="p-2.5 sm:p-4 md:p-6 flex flex-col flex-grow">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-1.5 sm:mb-3 gap-0.5 sm:gap-2">
-          <h3 className="font-display text-xs sm:text-base md:text-xl font-bold text-[#1B4332] leading-tight line-clamp-1 sm:line-clamp-2" title={product.name}>
+        <div className="flex justify-between items-start mb-2 sm:mb-3 gap-1.5 sm:gap-2">
+          <h3 className="font-display text-xs sm:text-base md:text-xl font-bold text-[#1B4332] leading-tight line-clamp-2" title={product.name}>
             {product.name}
           </h3>
           
-          <div className="sm:text-right flex-shrink-0">
-            {primaryTier ? (
-              <div>
-                <div className="flex items-baseline sm:justify-end gap-1 leading-tight">
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#1B4332]">{primaryTier.price}</span>
-                  <span className="text-[10px] sm:text-xs text-[#7A7265] font-medium">/{primaryTier.quantity}</span>
-                </div>
-                {/* Additional tiers visible on tablet / desktop */}
-                {product.priceTiers && product.priceTiers.length > 1 && (
-                  <div className="hidden sm:flex flex-col items-end gap-0.5 mt-0.5">
-                    {product.priceTiers.slice(1).map((tier, idx) => (
-                      <div key={idx} className="flex items-baseline justify-end gap-1 leading-tight">
-                        <span className="text-xs font-bold text-[#1B4332]">{tier.price}</span>
-                        <span className="text-[10px] text-[#7A7265] font-medium">/{tier.quantity}</span>
-                      </div>
-                    ))}
+          <div className="text-right flex-shrink-0">
+            {tiers ? (
+              <div className="flex flex-col items-end gap-0.5">
+                {tiers.map((tier, idx) => (
+                  <div key={idx} className="flex items-baseline justify-end gap-0.5 sm:gap-1 leading-tight">
+                    <span className="text-[11px] sm:text-sm md:text-base font-bold text-[#1B4332]">{tier.price}</span>
+                    <span className="text-[9px] sm:text-xs text-[#7A7265] font-medium">/{tier.quantity}</span>
                   </div>
-                )}
-                {/* Mobile badge for extra sizes */}
-                {product.priceTiers && product.priceTiers.length > 1 && (
-                  <span className="text-[10px] text-[#A67C52] font-medium sm:hidden block">
-                    +{product.priceTiers.length - 1} more size
-                  </span>
-                )}
+                ))}
               </div>
             ) : (
-              <div className="flex items-baseline sm:justify-end gap-1 leading-tight">
-                <span className="text-xs sm:text-base md:text-lg font-bold text-[#1B4332]">{product.price}</span>
-                <span className="text-[10px] sm:text-xs text-[#968F80] font-medium">/{product.quantityStr}</span>
+              <div className="flex items-baseline justify-end gap-0.5 sm:gap-1 leading-tight">
+                <span className="text-[11px] sm:text-base md:text-lg font-bold text-[#1B4332]">{product.price}</span>
+                <span className="text-[9px] sm:text-xs text-[#968F80] font-medium">/{product.quantityStr}</span>
               </div>
             )}
           </div>
