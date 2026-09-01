@@ -57,7 +57,7 @@ export function Home() {
             >
               <div className="row-span-2 rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Shami_Kebab.jpg" 
+                  src="/chicken-shami.jpeg" 
                   alt="Chicken Shami" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -81,7 +81,7 @@ export function Home() {
               </div>
               <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="/Gola-kebab.jpeg" 
+                  src="/golla-kebab.jpeg" 
                   alt="Chicken Gola Kebab" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

@@ -26,7 +26,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 650" },
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Shami_Kebab.jpg",
+    image: "/chicken-shami.jpeg",
     available: true,
     category: "kebabs"
   },
@@ -41,7 +41,7 @@ export const products: Product[] = [
       { quantity: "12 pcs", price: "Rs. 1,450" },
       { quantity: "24 pcs", price: "Rs. 2,800" }
     ],
-    image: "/Gola-kebab.jpeg",
+    image: "/golla-kebab.jpeg",
     available: true,
     category: "kebabs"
   },
@@ -83,7 +83,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 950" },
       { quantity: "24 pieces", price: "Rs. 1,750" }
     ],
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    image: "/cheese-samosa.jpeg",
     available: true,
     category: "samosas"
   },
@@ -125,7 +125,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 900" },
       { quantity: "24 pieces", price: "Rs. 1,800" }
     ],
-    image: "/chicken-pattie.jpg",
+    image: "/chicken-pattie.jpeg",
     available: true,
     category: "cutlets-patties"
   },
@@ -139,7 +139,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 800" },
       { quantity: "24 pieces", price: "Rs. 1,550" }
     ],
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
+    image: "/spring-rolls.jpeg",
     available: true,
     category: "rolls-nuggets"
   },
