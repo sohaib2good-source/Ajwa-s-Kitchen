@@ -12,6 +12,7 @@ export interface Product {
   priceTiers?: PriceTier[];
   image: string;
   available: boolean;
+  category?: string;
 }
 
 export const products: Product[] = [
@@ -26,7 +27,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
     image: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Shami_Kebab.jpg",
-    available: true
+    available: true,
+    category: "kebabs"
   },
   {
     id: "chicken-gola-kebab",
@@ -40,7 +42,8 @@ export const products: Product[] = [
       { quantity: "24 pcs", price: "Rs. 2,800" }
     ],
     image: "/Gola-kebab.jpeg",
-    available: true
+    available: true,
+    category: "kebabs"
   },
   {
     id: "chicken-potato-cutlets",
@@ -53,7 +56,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,200" }
     ],
     image: "/chicken-cutlets.jpeg",
-    available: true
+    available: true,
+    category: "cutlets-patties"
   },
   {
     id: "mini-aloo-samosa",
@@ -66,7 +70,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 950" }
     ],
     image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
-    available: true
+    available: true,
+    category: "samosas"
   },
   {
     id: "cheese-samosa",
@@ -79,7 +84,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,750" }
     ],
     image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
-    available: true
+    available: true,
+    category: "samosas"
   },
   {
     id: "chicken-samosa",
@@ -92,7 +98,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
     image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
-    available: true
+    available: true,
+    category: "samosas"
   },
   {
     id: "arabian-samosa",
@@ -105,7 +112,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,000" }
     ],
     image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
-    available: true
+    available: true,
+    category: "samosas"
   },
   {
     id: "chicken-pattie",
@@ -118,7 +126,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,800" }
     ],
     image: "/chicken-pattie.jpg",
-    available: true
+    available: true,
+    category: "cutlets-patties"
   },
   {
     id: "chicken-spring-rolls",
@@ -131,7 +140,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,550" }
     ],
     image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
-    available: true
+    available: true,
+    category: "rolls-nuggets"
   },
   {
     id: "chicken-box-pattie",
@@ -144,7 +154,8 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 2,000" }
     ],
     image: "/chicken-box-pattie.jpg",
-    available: true
+    available: true,
+    category: "cutlets-patties"
   },
   {
     id: "nuggets",
@@ -157,6 +168,7 @@ export const products: Product[] = [
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
     image: "/chicken-nuggets.jpg",
-    available: true
+    available: true,
+    category: "rolls-nuggets"
   }
 ];

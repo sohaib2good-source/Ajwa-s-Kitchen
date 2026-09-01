@@ -108,7 +108,7 @@ export function Home() {
           >
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo.jpg" 
+                src="/ajwa-kitchen-logo.jpg" 
                 alt="Ajwa's Kitchen Authentic Home Cooking" 
                 className="w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-lg border-4 border-[#FDFBF7] object-cover ring-2 ring-[#E6E0D4]"
               />
@@ -158,19 +158,19 @@ export function Home() {
       </section>
 
       {/* Menu Highlight Section */}
-      <section className="py-24 bg-[#FDFBF7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <section className="py-12 sm:py-24 bg-[#FDFBF7]">
+        <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-12 gap-3 sm:gap-6">
             <div>
-              <h2 className="font-display text-4xl font-bold text-[#1B4332] mb-3">Our Savoury Delights</h2>
-              <p className="text-lg text-[#5C5C5C]">Made fresh when you order.</p>
+              <h2 className="font-display text-2xl sm:text-4xl font-bold text-[#1B4332] mb-1 sm:mb-3">Our Savoury Delights</h2>
+              <p className="text-sm sm:text-lg text-[#5C5C5C]">Made fresh when you order.</p>
             </div>
-            <Link to="/menu" className="group inline-flex items-center text-[#1B4332] font-medium hover:text-[#1B4332] transition-colors">
-              View full menu <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Link to="/menu" className="group inline-flex items-center text-sm sm:text-base text-[#1B4332] font-semibold hover:text-[#143526] transition-colors">
+              View full menu <ArrowRight className="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-8">
             {featuredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

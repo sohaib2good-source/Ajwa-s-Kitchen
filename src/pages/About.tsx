@@ -25,7 +25,7 @@ export function About() {
         >
           <div className="flex justify-center -mt-16 sm:-mt-24 mb-8">
             <img 
-              src="/logo.jpg" 
+              src="/ajwa-kitchen-logo.jpg" 
               alt="Ajwa's Kitchen Logo" 
               className="w-28 h-28 sm:w-36 sm:h-36 rounded-full shadow-2xl border-4 border-white object-cover ring-2 ring-[#E6E0D4]"
             />

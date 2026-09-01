@@ -1,34 +1,67 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { products } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
 
+const categories = [
+  { id: 'all', name: 'All Delights' },
+  { id: 'kebabs', name: 'Kebabs' },
+  { id: 'samosas', name: 'Samosas' },
+  { id: 'cutlets-patties', name: 'Patties & Cutlets' },
+  { id: 'rolls-nuggets', name: 'Rolls & Nuggets' },
+];
+
 export function Menu() {
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const filteredProducts = activeCategory === 'all'
+    ? products
+    : products.filter(p => p.category === activeCategory);
+
   return (
     <div className="w-full pb-24">
       {/* Header */}
-      <section className="bg-[#1B4332] pt-20 pb-24 px-4 text-center">
+      <section className="bg-[#1B4332] pt-16 sm:pt-20 pb-20 sm:pb-24 px-4 text-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto"
         >
-          <h1 className="font-display text-5xl md:text-6xl font-bold text-white mb-6">Our Savoury Delights</h1>
-          <p className="text-xl text-[#FDFBF7]/90 leading-relaxed max-w-2xl mx-auto">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-6">Our Savoury Delights</h1>
+          <p className="text-sm sm:text-xl text-[#FDFBF7]/90 leading-relaxed max-w-2xl mx-auto">
             Made fresh when you order. Explore our selection of homemade Pakistani savouries, perfect for tea time, gatherings, or a delicious snack.
           </p>
         </motion.div>
       </section>
 
-      {/* Product Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, i) => (
+      {/* Category Tabs & Product Grid */}
+      <section className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-10">
+        {/* Category Filter Tabs */}
+        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-2 px-1 mb-5 sm:mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-3 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shadow-sm ${
+                activeCategory === cat.id
+                  ? 'bg-[#1B4332] text-[#FDFBF7] shadow-[#1B4332]/20 scale-105'
+                  : 'bg-white text-[#5C5C5C] border border-[#E6E0D4] hover:border-[#1B4332] hover:text-[#1B4332]'
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
+        {/* 2x2 Responsive Product Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-8">
+          {filteredProducts.map((product, i) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
             >
               <ProductCard product={product} />
             </motion.div>
