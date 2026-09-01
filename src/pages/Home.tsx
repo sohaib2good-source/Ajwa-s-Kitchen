@@ -57,9 +57,10 @@ export function Home() {
             >
               <div className="row-span-2 rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="/chicken-shami.jpeg" 
+                  src="/chicken-shami.webp" 
                   alt="Chicken Shami" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-0 left-0 p-6 sm:p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
@@ -72,6 +73,7 @@ export function Home() {
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg" 
                   alt="Mini Aloo Samosa" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
@@ -81,9 +83,10 @@ export function Home() {
               </div>
               <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="/golla-kebab.jpeg" 
+                  src="/golla-kebab.webp" 
                   alt="Chicken Gola Kebab" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
@@ -108,7 +111,7 @@ export function Home() {
           >
             <div className="flex justify-center mb-6">
               <img 
-                src="/ajwa-kitchen-logo.jpg" 
+                src="/ajwa-kitchen-logo.webp" 
                 alt="Ajwa's Kitchen Authentic Home Cooking" 
                 className="w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-lg border-4 border-[#FDFBF7] object-cover ring-2 ring-[#E6E0D4]"
               />

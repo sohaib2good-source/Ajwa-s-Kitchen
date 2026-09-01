@@ -31,7 +31,7 @@ export function Header() {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center gap-3 font-display font-bold text-xl tracking-tight text-[#1B4332] hover:opacity-85 transition-opacity">
               <img 
-                src="/ajwa-kitchen-logo.jpg" 
+                src="/ajwa-kitchen-logo.webp" 
                 alt="Ajwa's Kitchen Logo" 
                 className="w-10 h-10 rounded-full object-cover shadow-sm border border-[#E6E0D4]"
               />

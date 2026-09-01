@@ -23,6 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
           alt={product.name} 
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
+          decoding="async"
         />
         {!product.available && (
           <div className="absolute inset-0 bg-stone-900/60 flex items-center justify-center backdrop-blur-sm p-2">

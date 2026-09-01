@@ -26,7 +26,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 650" },
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
-    image: "/chicken-shami.jpeg",
+    image: "/chicken-shami.webp",
     available: true,
     category: "kebabs"
   },
@@ -41,7 +41,7 @@ export const products: Product[] = [
       { quantity: "12 pcs", price: "Rs. 1,450" },
       { quantity: "24 pcs", price: "Rs. 2,800" }
     ],
-    image: "/golla-kebab.jpeg",
+    image: "/golla-kebab.webp",
     available: true,
     category: "kebabs"
   },
@@ -55,7 +55,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 650" },
       { quantity: "24 pieces", price: "Rs. 1,200" }
     ],
-    image: "/chicken-cutlets.jpeg",
+    image: "/chicken-cutlets.webp",
     available: true,
     category: "cutlets-patties"
   },
@@ -83,7 +83,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 950" },
       { quantity: "24 pieces", price: "Rs. 1,750" }
     ],
-    image: "/cheese-samosa.jpeg",
+    image: "/cheese-samosa.webp",
     available: true,
     category: "samosas"
   },
@@ -125,7 +125,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 900" },
       { quantity: "24 pieces", price: "Rs. 1,800" }
     ],
-    image: "/chicken-pattie.jpeg",
+    image: "/chicken-pattie.webp",
     available: true,
     category: "cutlets-patties"
   },
@@ -139,7 +139,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 800" },
       { quantity: "24 pieces", price: "Rs. 1,550" }
     ],
-    image: "/spring-rolls.jpeg",
+    image: "/spring-rolls.webp",
     available: true,
     category: "rolls-nuggets"
   },
@@ -153,7 +153,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 1,050" },
       { quantity: "24 pieces", price: "Rs. 2,000" }
     ],
-    image: "/chicken-box-pattie.jpg",
+    image: "/chicken-box-pattie.webp",
     available: true,
     category: "cutlets-patties"
   },
@@ -167,7 +167,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 650" },
       { quantity: "24 pieces", price: "Rs. 1,250" }
     ],
-    image: "/chicken-nuggets.jpg",
+    image: "/chicken-nuggets.webp",
     available: true,
     category: "rolls-nuggets"
   }
