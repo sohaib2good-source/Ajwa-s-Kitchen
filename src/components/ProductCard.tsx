@@ -34,32 +34,32 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
       
-      <div className="p-2.5 sm:p-4 md:p-6 flex flex-col flex-grow">
-        <div className="flex justify-between items-start mb-2 sm:mb-3 gap-1.5 sm:gap-2">
-          <h3 className="font-display text-xs sm:text-base md:text-xl font-bold text-[#1B4332] leading-tight line-clamp-2" title={product.name}>
-            {product.name}
-          </h3>
-          
-          <div className="text-right flex-shrink-0">
-            {tiers ? (
-              <div className="flex flex-col items-end gap-0.5">
-                {tiers.map((tier, idx) => (
-                  <div key={idx} className="flex items-baseline justify-end gap-0.5 sm:gap-1 leading-tight">
-                    <span className="text-[11px] sm:text-sm md:text-base font-bold text-[#1B4332]">{tier.price}</span>
-                    <span className="text-[9px] sm:text-xs text-[#7A7265] font-medium">/{tier.quantity}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="flex items-baseline justify-end gap-0.5 sm:gap-1 leading-tight">
-                <span className="text-[11px] sm:text-base md:text-lg font-bold text-[#1B4332]">{product.price}</span>
-                <span className="text-[9px] sm:text-xs text-[#968F80] font-medium">/{product.quantityStr}</span>
-              </div>
-            )}
-          </div>
+      <div className="p-3 sm:p-4 md:p-6 flex flex-col flex-grow">
+        {/* Full-width Title for perfect mobile fit without truncating */}
+        <h3 className="font-display text-sm sm:text-base md:text-xl font-bold text-[#1B4332] leading-snug mb-1.5 sm:mb-2" title={product.name}>
+          {product.name}
+        </h3>
+        
+        {/* Full Pricing & Quantity Tiers */}
+        <div className="mb-2 sm:mb-3">
+          {tiers ? (
+            <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+              {tiers.map((tier, idx) => (
+                <div key={idx} className="flex items-baseline gap-0.5 sm:gap-1 leading-tight">
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#1B4332]">{tier.price}</span>
+                  <span className="text-[10px] sm:text-xs text-[#7A7265] font-medium">/{tier.quantity}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-baseline gap-0.5 sm:gap-1 leading-tight">
+              <span className="text-xs sm:text-base md:text-lg font-bold text-[#1B4332]">{product.price}</span>
+              <span className="text-[10px] sm:text-xs text-[#968F80] font-medium">/{product.quantityStr}</span>
+            </div>
+          )}
         </div>
         
-        <p className="text-[#5C5C5C] text-[11px] sm:text-xs md:text-sm leading-snug sm:leading-relaxed line-clamp-2 mb-2 sm:mb-4 flex-grow">
+        <p className="text-[#5C5C5C] text-[11px] sm:text-xs md:text-sm leading-snug sm:leading-relaxed line-clamp-2 mb-2.5 sm:mb-4 flex-grow">
           {product.description}
         </p>
         
