@@ -69,7 +69,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 500" },
       { quantity: "24 pieces", price: "Rs. 950" }
     ],
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
+    image: "/allo-samosa.jpeg",
     available: true,
     category: "samosas"
   },
@@ -153,7 +153,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 1,050" },
       { quantity: "24 pieces", price: "Rs. 2,000" }
     ],
-    image: "/chicken-box-pattie.webp",
+    image: "/box-pattie.jpeg",
     available: true,
     category: "cutlets-patties"
   },
