@@ -35,15 +35,15 @@ export function Menu() {
         </motion.div>
       </section>
 
-      {/* Category Tabs & Product Grid */}
-      <section className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-10">
-        {/* Category Filter Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-2 px-1 mb-5 sm:mb-8">
+      {/* Category Tabs & Products Section */}
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-10">
+        {/* Category Filter Tabs - Hidden on mobile (List View), Visible on tablet/desktop (Tab View) */}
+        <div className="hidden sm:flex items-center justify-center gap-2 overflow-x-auto no-scrollbar py-2 px-1 mb-8">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-3 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shadow-sm ${
+              className={`px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm ${
                 activeCategory === cat.id
                   ? 'bg-[#1B4332] text-[#FDFBF7] shadow-[#1B4332]/20 scale-105'
                   : 'bg-white text-[#5C5C5C] border border-[#E6E0D4] hover:border-[#1B4332] hover:text-[#1B4332]'
@@ -54,8 +54,22 @@ export function Menu() {
           ))}
         </div>
 
-        {/* 2x2 Responsive Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 md:gap-8">
+        {/* Mobile View: 1-Column Continuous Food List View */}
+        <div className="flex sm:hidden flex-col gap-3">
+          {products.map((product, i) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.03 }}
+            >
+              <ProductCard product={product} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop / Tablet View: Tabbed Multi-Column Grid */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProducts.map((product, i) => (
             <motion.div
               key={product.id}

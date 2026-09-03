@@ -34,6 +34,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link to="/" className="hover:text-[#FDFBF7] transition-colors">Home</Link></li>
               <li><Link to="/menu" className="hover:text-[#FDFBF7] transition-colors">Our Menu</Link></li>
+              <li><Link to="/process" className="hover:text-[#FDFBF7] transition-colors">Our Process</Link></li>
               <li><Link to="/about" className="hover:text-[#FDFBF7] transition-colors">About Us</Link></li>
               <li><Link to="/how-it-works" className="hover:text-[#FDFBF7] transition-colors">How It Works</Link></li>
               <li><Link to="/faq" className="hover:text-[#FDFBF7] transition-colors">FAQs</Link></li>
@@ -112,10 +113,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-[#143526] flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-[#FDFBF7]/70">
-          <p>© {currentYear} {config.businessName}. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Made fresh for you.
+        <div className="pt-8 border-t border-[#143526] flex flex-col md:flex-row justify-between items-center gap-4 text-xs tracking-wider text-[#FDFBF7]/70">
+          <p>© 2024 {config.businessName}. All rights reserved.</p>
+          <p className="flex items-center gap-1.5 normal-case">
+            <span>Crafted by</span>
+            <a 
+              href="https://vortexlabsworld.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="font-semibold text-[#A67C52] hover:text-[#FDFBF7] transition-colors underline-offset-4 hover:underline"
+            >
+              Vortex Labs
+            </a>
           </p>
         </div>
       </div>

@@ -23,3 +23,7 @@
 ## 4. AGENT COMPLIANCE & ENFORCEMENT
 - These rules are mandatory, permanent, and take absolute precedence over any other instruction.
 - The agent must enforce these constraints continuously and unconditionally across all interactions.
+
+## 5. BROWSER & DOM INSPECTION CONSTRAINT
+- **No Automatic DOM / Browser Verification**: The agent must NEVER automatically boot or run the browser subagent, inspect DOM, or test pages in the browser unless explicitly requested by the user.
+- **On User Demand Only**: Only launch browser checks, DOM inspections, or UI verification when the user explicitly asks for it (e.g., "check in browser", "check DOM", "verify changes in browser").
