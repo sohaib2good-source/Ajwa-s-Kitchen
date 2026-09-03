@@ -2,13 +2,14 @@ export const config = {
   businessName: "Ajwa's Kitchen",
   tagline: "Freshly Made. Full of Taste. Made for You.",
   contact: {
-    phone: "[Phone Number]",
-    whatsapp: "[WhatsApp Number]",
+    phone: "0311 6611055",
+    whatsapp: "0311 6611055",
+    whatsappUrl: "https://wa.me/923116611055",
     email: "[Email Address]",
-    serviceArea: "[Service Area]"
+    serviceArea: "All major areas in Lahore"
   },
   social: {
-    instagram: "[Instagram Link]",
+    instagram: "https://www.instagram.com/ajwashomemadekitchen?igsi=MXYyaG9mb253c2NqaQ==&utm_source=ig_contact_invite",
     facebook: "[Facebook Link]"
   },
   faqs: [
@@ -26,11 +27,11 @@ export const config = {
     },
     {
       question: "How much advance notice is needed?",
-      answer: "[Required Notice Period] advance notice is recommended to ensure we can freshly prepare your order."
+      answer: "Advance notice is recommended to ensure we can freshly prepare your order."
     },
     {
       question: "Do you offer delivery?",
-      answer: "Yes, we offer delivery in [Delivery Area]. Please contact us for specific availability."
+      answer: "Yes, we offer delivery in all major areas in Lahore. Please contact us for specific availability."
     },
     {
       question: "How can I see current prices?",

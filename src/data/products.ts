@@ -69,7 +69,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 500" },
       { quantity: "24 pieces", price: "Rs. 950" }
     ],
-    image: "/allo-samosa.jpeg",
+    image: "/allo-samosa.webp",
     available: true,
     category: "samosas"
   },
@@ -111,7 +111,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 550" },
       { quantity: "24 pieces", price: "Rs. 1,000" }
     ],
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg",
+    image: "/arbian-samosa.webp",
     available: true,
     category: "samosas"
   },
@@ -153,7 +153,7 @@ export const products: Product[] = [
       { quantity: "12 pieces", price: "Rs. 1,050" },
       { quantity: "24 pieces", price: "Rs. 2,000" }
     ],
-    image: "/box-pattie.jpeg",
+    image: "/box-pattie.webp",
     available: true,
     category: "cutlets-patties"
   },

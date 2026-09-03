@@ -70,7 +70,7 @@ export function Home() {
               </div>
               <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Samosas%2C_snack_food_at_Wikipedia%27s_16th_Birthday_celebration_in_Chittagong_%2801%29.jpg" 
+                  src="/allo-samosa.webp" 
                   alt="Mini Aloo Samosa" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   decoding="async"

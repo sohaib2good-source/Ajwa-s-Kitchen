@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { config } from '@/data/config';
 import { products } from '@/data/products';
 import { Phone, Mail, MapPin, Instagram, Facebook, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 
 export function Contact() {
   const [searchParams] = useSearchParams();
@@ -63,21 +64,43 @@ export function Contact() {
                 <div className="w-10 h-10 rounded-full bg-[#1B4332]/30 flex items-center justify-center flex-shrink-0">
                   <Phone className="h-5 w-5 text-[#A67C52]" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Phone / WhatsApp</h3>
-                  <p className="text-lg">{config.contact.phone}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
+                    <a 
+                      href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} 
+                      className="text-lg font-medium hover:text-[#A67C52] transition-colors"
+                    >
+                      {config.contact.phone}
+                    </a>
+                    <a
+                      href={config.contact.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-md transition-all duration-300 hover:scale-105 w-fit"
+                      aria-label="Open WhatsApp Chat"
+                      title="Open WhatsApp Chat"
+                    >
+                      <WhatsAppIcon className="h-4 w-4 fill-current" />
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#1B4332]/30 flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-[#A67C52]" />
+              {config.contact.email && config.contact.email !== "[Email Address]" && (
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1B4332]/30 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-5 w-5 text-[#A67C52]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Email</h3>
+                    <a href={`mailto:${config.contact.email}`} className="text-lg hover:text-[#A67C52] transition-colors">
+                      {config.contact.email}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Email</h3>
-                  <p className="text-lg">{config.contact.email}</p>
-                </div>
-              </div>
+              )}
 
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#1B4332]/30 flex items-center justify-center flex-shrink-0">
@@ -85,22 +108,45 @@ export function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Service Area</h3>
-                  <p className="text-lg">{config.contact.serviceArea}</p>
+                  <p className="text-lg font-medium text-stone-200">{config.contact.serviceArea}</p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="font-semibold text-stone-300 text-sm mb-4 uppercase tracking-wider">Follow Us</h3>
+              <h3 className="font-semibold text-stone-300 text-sm mb-4 uppercase tracking-wider">Connect With Us</h3>
               <div className="flex gap-4">
-                <a href={config.social.instagram !== "[Instagram Link]" ? config.social.instagram : "#"} 
-                   className="w-12 h-12 rounded-full bg-[#143526] flex items-center justify-center hover:bg-[#1B4332] transition-colors">
+                <a 
+                  href={config.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#25D366] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
+                  aria-label="WhatsApp"
+                  title="Message us on WhatsApp"
+                >
+                  <WhatsAppIcon className="h-5 w-5 fill-current" />
+                </a>
+                <a 
+                  href={config.social.instagram} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#E1306C] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
+                  aria-label="Instagram"
+                  title="Follow us on Instagram"
+                >
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href={config.social.facebook !== "[Facebook Link]" ? config.social.facebook : "#"}
-                   className="w-12 h-12 rounded-full bg-[#143526] flex items-center justify-center hover:bg-[#1B4332] transition-colors">
-                  <Facebook className="h-5 w-5" />
-                </a>
+                {config.social.facebook && config.social.facebook !== "[Facebook Link]" && (
+                  <a 
+                    href={config.social.facebook}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#1877F2] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>
