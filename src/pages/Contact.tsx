@@ -361,52 +361,52 @@ ${JSON.stringify(payload, null, 2)}
 
       {/* Main Container */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="flex flex-col gap-8">
           
-          {/* Contact Info (Left Column) */}
+          {/* Upper Line: Contact Information Box (Squeezed & Sleek) */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 bg-gradient-to-br from-stone-900 via-stone-900 to-[#14291F] text-white rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-10 shadow-xl border border-white/5 h-fit lg:sticky lg:top-28"
+            className="w-full bg-gradient-to-br from-stone-900 via-stone-900 to-[#14291F] text-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:py-3.5 lg:px-6 shadow-lg border border-white/5"
           >
-            {/* Mobile View: Squeezed & Smart Compact Layout */}
-            <div className="sm:hidden space-y-2.5">
+            {/* Mobile View: Compact Squeezed Layout */}
+            <div className="sm:hidden space-y-2">
               <div className="flex items-center justify-between">
-                <h2 className="font-display text-lg font-bold text-white">Contact Info</h2>
-                <div className="flex items-center gap-2">
+                <h2 className="font-display text-base font-bold text-white">Contact Info</h2>
+                <div className="flex items-center gap-1.5">
                   <a 
                     href={config.contact.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#25D366] flex items-center justify-center text-white transition-colors shadow-sm"
+                    className="w-7 h-7 rounded-full bg-white/10 hover:bg-[#25D366] flex items-center justify-center text-white transition-colors shadow-sm"
                     aria-label="WhatsApp"
                     title="WhatsApp"
                   >
-                    <WhatsAppIcon className="h-4 w-4 fill-current" />
+                    <WhatsAppIcon className="h-3.5 w-3.5 fill-current" />
                   </a>
                   <a 
                     href={config.social.instagram} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E1306C] flex items-center justify-center text-white transition-colors shadow-sm"
+                    className="w-7 h-7 rounded-full bg-white/10 hover:bg-[#E1306C] flex items-center justify-center text-white transition-colors shadow-sm"
                     aria-label="Instagram"
                     title="Instagram"
                   >
-                    <Instagram className="h-4 w-4" />
+                    <Instagram className="h-3.5 w-3.5" />
                   </a>
                 </div>
               </div>
 
               {/* Quick Call & WhatsApp Row */}
-              <div className="flex items-center justify-between gap-2 p-2.5 bg-white/5 rounded-xl border border-white/10">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-full bg-[#1B4332] flex items-center justify-center flex-shrink-0 text-[#A67C52]">
-                    <Phone className="h-4 w-4" />
+              <div className="flex items-center justify-between gap-2 p-2 bg-white/5 rounded-xl border border-white/10">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="w-7 h-7 rounded-full bg-[#1B4332] flex items-center justify-center flex-shrink-0 text-[#A67C52]">
+                    <Phone className="h-3.5 w-3.5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] uppercase tracking-wider text-stone-400 font-semibold leading-none">Order / Enquiry</p>
-                    <a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} className="text-sm font-bold text-white hover:text-[#A67C52] transition-colors truncate block">
+                    <p className="text-[9px] uppercase tracking-wider text-stone-400 font-semibold leading-none">Order Line</p>
+                    <a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} className="text-xs font-bold text-white hover:text-[#A67C52] transition-colors truncate block">
                       {config.contact.phone}
                     </a>
                   </div>
@@ -415,36 +415,64 @@ ${JSON.stringify(payload, null, 2)}
                   href={config.contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md transition-transform active:scale-95 flex-shrink-0"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold shadow-md transition-transform active:scale-95 flex-shrink-0"
                   aria-label="Open WhatsApp Chat"
                 >
-                  <WhatsAppIcon className="h-3.5 w-3.5 fill-current" />
+                  <WhatsAppIcon className="h-3 w-3 fill-current" />
                   <span>WhatsApp</span>
                 </a>
               </div>
 
               {/* Service Area */}
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-xl border border-white/5 text-xs text-stone-300">
-                <MapPin className="h-3.5 w-3.5 text-[#A67C52] flex-shrink-0" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white/5 rounded-xl border border-white/5 text-[11px] text-stone-300">
+                <MapPin className="h-3 w-3 text-[#A67C52] flex-shrink-0" />
                 <span>Service Area: <strong className="text-stone-100">{config.contact.serviceArea}</strong></span>
               </div>
             </div>
 
-            {/* Desktop / Tablet View: Spacious Sidebar */}
+            {/* Desktop / Tablet View: Squeezed Horizontal Bar */}
             <div className="hidden sm:block">
-              <h2 className="font-display text-2xl lg:text-3xl font-bold mb-6 lg:mb-8">Contact Information</h2>
-              
-              <div className="space-y-6 lg:space-y-8 mb-8 lg:mb-12">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#1B4332]/40 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-5 w-5 text-[#A67C52]" />
+              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex items-baseline gap-2.5">
+                  <h2 className="font-display text-lg lg:text-xl font-bold text-white">Contact Information</h2>
+                  <span className="text-[10px] uppercase tracking-widest text-[#A67C52] font-semibold">Kitchen Support & Orders</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold">Connect:</span>
+                  <a 
+                    href={config.contact.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-[#143526] hover:bg-[#25D366] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
+                    aria-label="WhatsApp"
+                    title="Message us on WhatsApp"
+                  >
+                    <WhatsAppIcon className="h-4 w-4 fill-current" />
+                  </a>
+                  <a 
+                    href={config.social.instagram} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-[#143526] hover:bg-[#E1306C] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
+                    aria-label="Instagram"
+                    title="Follow us on Instagram"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-[#1B4332]/40 flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-4 w-4 text-[#A67C52]" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Phone / WhatsApp</h3>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
+                  <div>
+                    <h3 className="font-semibold text-stone-400 text-[10px] uppercase tracking-wider">Phone / WhatsApp</h3>
+                    <div className="flex items-center gap-2.5 mt-0.5">
                       <a 
                         href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} 
-                        className="text-lg font-medium hover:text-[#A67C52] transition-colors"
+                        className="text-base lg:text-lg font-bold text-white hover:text-[#A67C52] transition-colors"
                       >
                         {config.contact.phone}
                       </a>
@@ -452,87 +480,37 @@ ${JSON.stringify(payload, null, 2)}
                         href={config.contact.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-md transition-all duration-300 hover:scale-105 w-fit"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-bold shadow-sm transition-all duration-300 hover:scale-105"
                         aria-label="Open WhatsApp Chat"
                         title="Open WhatsApp Chat"
                       >
-                        <WhatsAppIcon className="h-4 w-4 fill-current" />
+                        <WhatsAppIcon className="h-3.5 w-3.5 fill-current" />
                         <span>Chat on WhatsApp</span>
                       </a>
                     </div>
                   </div>
                 </div>
 
-                {config.contact.email && config.contact.email !== "[Email Address]" && (
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#1B4332]/40 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-[#A67C52]" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Email</h3>
-                      <a href={`mailto:${config.contact.email}`} className="text-lg hover:text-[#A67C52] transition-colors">
-                        {config.contact.email}
-                      </a>
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#1B4332]/40 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-[#A67C52]" />
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-[#1B4332]/40 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-4 w-4 text-[#A67C52]" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-300 text-sm mb-1 uppercase tracking-wider">Service Area</h3>
-                    <p className="text-lg font-medium text-stone-200">{config.contact.serviceArea}</p>
+                    <h3 className="font-semibold text-stone-400 text-[10px] uppercase tracking-wider">Service Area</h3>
+                    <p className="text-base lg:text-lg font-bold text-stone-100 leading-tight">{config.contact.serviceArea}</p>
+                    <p className="text-[10px] text-stone-400">Freshly prepared & delivered across Lahore</p>
                   </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-stone-300 text-sm mb-4 uppercase tracking-wider">Connect With Us</h3>
-                <div className="flex gap-4">
-                  <a 
-                    href={config.contact.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#25D366] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
-                    aria-label="WhatsApp"
-                    title="Message us on WhatsApp"
-                  >
-                    <WhatsAppIcon className="h-5 w-5 fill-current" />
-                  </a>
-                  <a 
-                    href={config.social.instagram} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#E1306C] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
-                    aria-label="Instagram"
-                    title="Follow us on Instagram"
-                  >
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                  {config.social.facebook && config.social.facebook !== "[Facebook Link]" && (
-                    <a 
-                      href={config.social.facebook}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-full bg-[#143526] hover:bg-[#1877F2] flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-sm"
-                      aria-label="Facebook"
-                    >
-                      <Facebook className="h-5 w-5" />
-                    </a>
-                  )}
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Interactive Order Form (Right Column) */}
+          {/* Lower Line: Interactive Order Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-3 bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-[#E6E0D4]"
+            className="w-full bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-[#E6E0D4]"
           >
             {formState === 'success' && submittedOrder ? (
               /* Success & Order Receipt Confirmation */
@@ -671,7 +649,7 @@ ${JSON.stringify(payload, null, 2)}
                     <span className="text-[11px] text-stone-500 font-medium">Click to select & configure</span>
                   </div>
 
-                  <div className="space-y-2.5 max-h-[480px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
                     {products.map((product) => {
                       const isChecked = Boolean(selectedItems[product.id]);
                       const currentConfig = selectedItems[product.id] || { tierIndex: 0, packCount: 1 };
@@ -682,53 +660,54 @@ ${JSON.stringify(payload, null, 2)}
                       return (
                         <div 
                           key={product.id}
-                          className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                          className={`rounded-2xl border transition-all duration-200 overflow-hidden flex flex-col justify-between ${
                             isChecked 
-                              ? 'bg-emerald-50/40 border-[#1B4332] shadow-sm' 
-                              : 'bg-white border-[#E6E0D4] hover:border-stone-400'
+                              ? 'bg-emerald-50/40 border-[#1B4332] shadow-md ring-1 ring-[#1B4332]' 
+                              : 'bg-white border-[#E6E0D4] hover:border-stone-400 shadow-sm hover:shadow'
                           }`}
                         >
-                          {/* Item Checkbox Bar */}
+                          {/* Item Card Header */}
                           <div 
                             onClick={() => toggleItemSelection(product)}
-                            className="p-3 sm:p-3.5 flex items-center justify-between gap-3 cursor-pointer select-none"
+                            className="p-2.5 sm:p-3 cursor-pointer select-none"
                           >
-                            <div className="flex items-center gap-3 min-w-0">
+                            <div className="flex items-start justify-between gap-1.5 mb-2">
                               {/* Custom Styled Checkbox */}
-                              <div className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-colors ${
+                              <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-colors ${
                                 isChecked 
                                   ? 'bg-[#1B4332] text-white' 
                                   : 'border-2 border-stone-300 bg-white'
                               }`}>
-                                {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                               </div>
 
-                              {/* Thumbnail */}
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors ${
+                                isChecked 
+                                  ? 'bg-[#1B4332] text-white' 
+                                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                              }`}>
+                                {isChecked ? 'Added' : '+ Add'}
+                              </span>
+                            </div>
+
+                            {/* Thumbnail & Title */}
+                            <div className="flex items-center gap-2.5">
                               <img 
                                 src={product.image} 
                                 alt={product.name} 
-                                className="w-12 h-12 rounded-xl object-cover flex-shrink-0 bg-stone-100"
+                                className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 bg-stone-100 border border-stone-200/60"
                                 loading="lazy"
                               />
 
-                              {/* Name & Starting Price */}
-                              <div className="min-w-0">
-                                <h3 className="font-display text-sm sm:text-base font-bold text-[#1B4332] truncate">
+                              <div className="min-w-0 flex-1">
+                                <h3 className="font-display text-xs sm:text-sm font-bold text-[#1B4332] leading-tight line-clamp-2">
                                   {product.name}
                                 </h3>
-                                <p className="text-[11px] sm:text-xs text-stone-500">
-                                  From <strong className="text-[#1B4332]">{product.price}</strong> <span className="text-stone-400">/{product.quantityStr}</span>
+                                <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5">
+                                  From <strong className="text-[#1B4332]">{product.price}</strong>
                                 </p>
                               </div>
                             </div>
-
-                            <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
-                              isChecked 
-                                ? 'bg-[#1B4332] text-white' 
-                                : 'bg-stone-100 text-stone-600'
-                            }`}>
-                              {isChecked ? 'Added' : '+ Add'}
-                            </span>
                           </div>
 
                           {/* Expanded Dynamic Tiers & Quantity Pack Selector */}
@@ -738,71 +717,67 @@ ${JSON.stringify(payload, null, 2)}
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.25 }}
-                                className="px-3 sm:px-4 pb-3.5 pt-1 border-t border-emerald-900/10 bg-white/70"
+                                transition={{ duration: 0.2 }}
+                                className="px-2.5 pb-2.5 pt-2 border-t border-emerald-900/10 bg-white/80 space-y-2"
                               >
-                                <div className="space-y-3 pt-2">
-                                  {/* Available Quantity Check/Radio Buttons */}
-                                  <div>
-                                    <p className="text-[11px] uppercase tracking-wider text-stone-500 font-bold mb-1.5">
-                                      Select Pack Size / Quantity:
-                                    </p>
-                                    <div className="flex flex-wrap gap-2">
-                                      {tiers.map((tier, idx) => {
-                                        const isTierSelected = currentConfig.tierIndex === idx;
-                                        return (
-                                          <button
-                                            key={idx}
-                                            type="button"
-                                            onClick={(e) => {
-                                              e.stopPropagation();
-                                              handleTierChange(product.id, idx);
-                                            }}
-                                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                                              isTierSelected
-                                                ? 'bg-[#1B4332] text-white shadow-sm ring-2 ring-[#1B4332]/20'
-                                                : 'bg-[#F9F7F2] text-stone-700 border border-[#E6E0D4] hover:border-[#1B4332]'
-                                            }`}
-                                          >
-                                            <span className={`w-2 h-2 rounded-full ${isTierSelected ? 'bg-white' : 'bg-stone-300'}`} />
-                                            <span>{tier.quantity}</span>
-                                            <span className="opacity-75">— {tier.price}</span>
-                                          </button>
-                                        );
-                                      })}
-                                    </div>
+                                <div>
+                                  <p className="text-[9px] uppercase tracking-wider text-stone-500 font-bold mb-1">
+                                    Pack Size:
+                                  </p>
+                                  <div className="flex flex-col gap-1">
+                                    {tiers.map((tier, idx) => {
+                                      const isTierSelected = currentConfig.tierIndex === idx;
+                                      return (
+                                        <button
+                                          key={idx}
+                                          type="button"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleTierChange(product.id, idx);
+                                          }}
+                                          className={`px-2 py-1 rounded-lg text-[10px] sm:text-[11px] font-bold transition-all flex items-center justify-between gap-1 ${
+                                            isTierSelected
+                                              ? 'bg-[#1B4332] text-white shadow-sm ring-1 ring-[#1B4332]'
+                                              : 'bg-stone-50 text-stone-700 border border-stone-200 hover:border-[#1B4332]'
+                                          }`}
+                                        >
+                                          <span>{tier.quantity}</span>
+                                          <span className="opacity-80">{tier.price}</span>
+                                        </button>
+                                      );
+                                    })}
                                   </div>
+                                </div>
 
-                                  {/* Number of Packs Stepper */}
-                                  <div className="flex items-center justify-between pt-1">
-                                    <span className="text-xs text-stone-600 font-medium">Number of packs:</span>
-                                    <div className="flex items-center gap-2">
-                                      <button
-                                        type="button"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          handlePackCountChange(product.id, -1);
-                                        }}
-                                        className="w-7 h-7 rounded-lg bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold"
-                                        aria-label="Decrease quantity"
-                                      >
-                                        <Minus className="w-3.5 h-3.5" />
-                                      </button>
-                                      <span className="w-8 text-center text-xs sm:text-sm font-bold text-[#1B4332]">
-                                        {currentConfig.packCount}
-                                      </span>
-                                      <button
-                                        type="button"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          handlePackCountChange(product.id, 1);
-                                        }}
-                                        className="w-7 h-7 rounded-lg bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold"
-                                        aria-label="Increase quantity"
-                                      >
-                                        <Plus className="w-3.5 h-3.5" />
-                                      </button>
-                                    </div>
+                                {/* Number of Packs Stepper */}
+                                <div className="flex items-center justify-between pt-1 border-t border-stone-100">
+                                  <span className="text-[10px] text-stone-600 font-medium">Quantity:</span>
+                                  <div className="flex items-center gap-1.5">
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handlePackCountChange(product.id, -1);
+                                      }}
+                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
+                                      aria-label="Decrease quantity"
+                                    >
+                                      <Minus className="w-3 h-3" />
+                                    </button>
+                                    <span className="w-5 text-center text-xs font-bold text-[#1B4332]">
+                                      {currentConfig.packCount}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handlePackCountChange(product.id, 1);
+                                      }}
+                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
+                                      aria-label="Increase quantity"
+                                    >
+                                      <Plus className="w-3 h-3" />
+                                    </button>
                                   </div>
                                 </div>
                               </motion.div>

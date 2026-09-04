@@ -20,7 +20,6 @@ export function Header() {
     { name: 'About', path: '/about' },
     { name: 'How It Works', path: '/how-it-works' },
     { name: 'FAQ', path: '/faq' },
-    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -54,7 +53,7 @@ export function Header() {
               </Link>
             ))}
             <Link 
-              to="/menu"
+              to="/contact"
               className="bg-[#1B4332] text-[#FDFBF7] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-lg shadow-[#1B4332]/20 hover:opacity-90 transition-opacity active:scale-95"
             >
               Order Now
