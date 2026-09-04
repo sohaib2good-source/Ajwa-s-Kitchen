@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { config } from '@/data/config';
 import { products, Product, PriceTier } from '@/data/products';
 import { 
-  Phone, Mail, MapPin, Instagram, Facebook, 
+  Phone, MapPin, Instagram, Facebook, 
   CheckCircle2, AlertCircle, Loader2, 
   Check, Plus, Minus, ShoppingBag, Receipt, ArrowRight
 } from 'lucide-react';
@@ -304,30 +304,6 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
     if (submittedOrder.fulfillment.additionalNotes && submittedOrder.fulfillment.additionalNotes !== 'None') {
       msg += `*Notes:* ${submittedOrder.fulfillment.additionalNotes}\n`;
     }
-    return encodeURIComponent(msg);
-  };
-
-  // Email mailto link format
-  const generateMailtoLink = () => {
-    if (!submittedOrder) return '#';
-    const subject = encodeURIComponent(`New Order Request #${submittedOrder.orderId} - ${submittedOrder.customer.name}`);
-    let body = `ORDER DETAILS\n-------------------\n`;
-    body += `Order ID: ${submittedOrder.orderId}\n`;
-    body += `Customer: ${submittedOrder.customer.name}\n`;
-    body += `Phone: ${submittedOrder.customer.phone}\n`;
-    body += `Email: ${submittedOrder.customer.email}\n`;
-    body += `Fulfillment: ${submittedOrder.fulfillment.type.toUpperCase()}\n`;
-    if (submittedOrder.fulfillment.type === 'delivery') {
-      body += `Delivery Address: ${submittedOrder.fulfillment.deliveryAddress}\n`;
-    }
-    body += `Preferred Date: ${submittedOrder.fulfillment.preferredDate}\n`;
-    body += `Notes: ${submittedOrder.fulfillment.additionalNotes}\n\n`;
-    body += `ITEMS:\n`;
-    submittedOrder.items.forEach(item => {
-      body += `- ${item.name} | ${item.selectedQuantity} x ${item.packs} pack(s) = ${item.formattedTotalPrice}\n`;
-    });
-    const targetEmail = config.contact.email && config.contact.email !== "[Email Address]" ? config.contact.email : '';
-    return `mailto:${targetEmail}?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -518,7 +494,7 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                     Order Request #{submittedOrder.orderId}
                   </h2>
                   <p className="text-stone-600 text-sm max-w-md mx-auto">
-                    Thank you, <strong className="text-[#1B4332]">{submittedOrder.customer.name}</strong>! Your order has been prepared and formatted. You can now dispatch it directly via WhatsApp or Email.
+                    Thank you, <strong className="text-[#1B4332]">{submittedOrder.customer.name}</strong>! Your order has been prepared and formatted. You can now send it directly to our kitchen via WhatsApp.
                   </p>
                 </div>
 
@@ -553,24 +529,16 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                   </p>
                 </div>
 
-                {/* Dispatch Action Buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {/* Dispatch Action Button: WhatsApp */}
+                <div className="pt-2">
                   <a
                     href={`https://wa.me/923116611055?text=${generateWhatsAppMessage()}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-transform active:scale-95 text-center"
+                    className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.99] text-center cursor-pointer"
                   >
-                    <WhatsAppIcon className="w-4 h-4 fill-current" />
+                    <WhatsAppIcon className="w-5 h-5 fill-current" />
                     <span>Send Order on WhatsApp</span>
-                  </a>
-
-                  <a
-                    href={generateMailtoLink()}
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#1B4332] hover:bg-[#143526] text-white font-bold text-sm shadow-md transition-transform active:scale-95 text-center"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Send Order via Email</span>
                   </a>
                 </div>
 
