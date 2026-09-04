@@ -27,3 +27,7 @@
 ## 5. BROWSER & DOM INSPECTION CONSTRAINT
 - **No Automatic DOM / Browser Verification**: The agent must NEVER automatically boot or run the browser subagent, inspect DOM, or test pages in the browser unless explicitly requested by the user.
 - **On User Demand Only**: Only launch browser checks, DOM inspections, or UI verification when the user explicitly asks for it (e.g., "check in browser", "check DOM", "verify changes in browser").
+
+## 6. GIT & REPOSITORY PUSH CONSTRAINT
+- **Never Auto-Git or Push to GitHub**: NEVER execute git commit, git push, or any git upload commands to GitHub until the user explicitly says so (e.g., "push to github", "push to main", "commit changes").
+- **Strict User Authorization Required**: All modifications must remain local until the user explicitly directs you to push or commit.

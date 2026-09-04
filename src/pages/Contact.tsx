@@ -6,7 +6,7 @@ import { products, Product, PriceTier } from '@/data/products';
 import { 
   Phone, Mail, MapPin, Instagram, Facebook, 
   CheckCircle2, AlertCircle, Loader2, 
-  Check, Plus, Minus, Copy, ShoppingBag, Receipt, ArrowRight, Code
+  Check, Plus, Minus, ShoppingBag, Receipt, ArrowRight
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 
@@ -81,8 +81,6 @@ export function Contact() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [validationError, setValidationError] = useState<string | null>(null);
   const [submittedOrder, setSubmittedOrder] = useState<OrderPayload | null>(null);
-  const [copiedJson, setCopiedJson] = useState(false);
-  const [showJsonView, setShowJsonView] = useState(false);
 
   // Toggle item checkbox
   const toggleItemSelection = (product: Product) => {
@@ -292,14 +290,6 @@ ${JSON.stringify(payload, null, 2)}
     setSubmittedOrder(payload);
     setFormState('success');
     window.scrollTo({ top: 300, behavior: 'smooth' });
-  };
-
-  // Copy JSON to clipboard
-  const handleCopyJson = () => {
-    if (!submittedOrder) return;
-    navigator.clipboard.writeText(JSON.stringify(submittedOrder, null, 2));
-    setCopiedJson(true);
-    setTimeout(() => setCopiedJson(false), 2500);
   };
 
   // WhatsApp Order Message format
@@ -610,49 +600,6 @@ ${JSON.stringify(payload, null, 2)}
                     <Mail className="w-4 h-4" />
                     <span>Send Order via Email</span>
                   </a>
-                </div>
-
-                {/* JSON Data Viewer & Copy Action */}
-                <div className="bg-stone-900 text-stone-100 rounded-2xl p-4 sm:p-5 border border-stone-800">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-stone-300">
-                      <Code className="w-4 h-4 text-[#A67C52]" />
-                      <span>Order JSON Structure (Email Ready)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handleCopyJson}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
-                        title="Copy JSON payload"
-                      >
-                        {copiedJson ? (
-                          <>
-                            <Check className="w-3.5 h-3.5 text-green-400" />
-                            <span className="text-green-400">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-3.5 h-3.5" />
-                            <span>Copy JSON</span>
-                          </>
-                        )}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setShowJsonView(v => !v)}
-                        className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-[11px] text-stone-400 hover:text-white transition-colors"
-                      >
-                        {showJsonView ? 'Hide' : 'View'}
-                      </button>
-                    </div>
-                  </div>
-
-                  {showJsonView && (
-                    <pre className="text-[11px] font-mono bg-stone-950 p-3 rounded-xl overflow-x-auto text-emerald-400 max-h-60 border border-stone-800 leading-relaxed">
-                      {JSON.stringify(submittedOrder, null, 2)}
-                    </pre>
-                  )}
                 </div>
 
                 {/* Reset Form */}

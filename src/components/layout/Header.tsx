@@ -83,30 +83,33 @@ export function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#FDFBF7] border-b border-[#E6E0D4] overflow-hidden"
+            className="md:hidden bg-white border-b border-[#E6E0D4] shadow-lg"
           >
-            <div className="px-3 pt-3 pb-5 sm:px-6 shadow-inner">
-              <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="px-4 py-3 divide-y divide-[#E6E0D4]/60">
+              <nav className="flex flex-col py-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-center text-center px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
+                    className={`flex items-center justify-between py-3 px-3 rounded-xl text-sm font-semibold transition-colors ${
                       location.pathname === link.path
-                        ? 'bg-[#1B4332] text-[#FDFBF7] border-[#1B4332] shadow-sm'
-                        : 'bg-white text-[#4A4A4A] border-[#E6E0D4] hover:border-[#1B4332] hover:text-[#1B4332]'
+                        ? 'bg-[#1B4332]/10 text-[#1B4332] font-bold'
+                        : 'text-stone-700 hover:bg-stone-50 hover:text-[#1B4332]'
                     }`}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    {location.pathname === link.path && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#1B4332]" />
+                    )}
                   </Link>
                 ))}
-              </div>
-              <div className="px-1">
+              </nav>
+              <div className="pt-3 pb-2">
                 <Link
-                  to="/menu"
+                  to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center bg-[#1B4332] text-[#FDFBF7] px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide hover:opacity-90 transition-opacity shadow-md shadow-[#1B4332]/20 active:scale-98"
+                  className="block w-full text-center bg-[#1B4332] text-[#FDFBF7] px-4 py-3 rounded-full text-sm font-bold tracking-wide hover:bg-[#143526] transition-colors shadow-md shadow-[#1B4332]/15 active:scale-98"
                 >
                   Order Now
                 </Link>
