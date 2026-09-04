@@ -216,9 +216,6 @@ ${itemsSummaryText}
 --------------------------------------------------
 APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
 (Excluding delivery fee; final confirmation via WhatsApp/Email)
-
-ORDER JSON PAYLOAD:
-${JSON.stringify(payload, null, 2)}
 `.trim();
 
     const web3FormData = {
@@ -234,7 +231,6 @@ ${JSON.stringify(payload, null, 2)}
       preferred_date: preferredDate,
       special_notes: notes || 'None',
       message: emailMessage,
-      order_json: JSON.stringify(payload)
     };
 
     try {
@@ -330,10 +326,8 @@ ${JSON.stringify(payload, null, 2)}
     submittedOrder.items.forEach(item => {
       body += `- ${item.name} | ${item.selectedQuantity} x ${item.packs} pack(s) = ${item.formattedTotalPrice}\n`;
     });
-    body += `\nAPPROXIMATE TOTAL: ${submittedOrder.summary.formattedTotal}\n\n`;
-    body += `JSON PAYLOAD:\n${JSON.stringify(submittedOrder, null, 2)}`;
-    
-    return `mailto:${config.contact.email}?subject=${subject}&body=${encodeURIComponent(body)}`;
+    const targetEmail = config.contact.email && config.contact.email !== "[Email Address]" ? config.contact.email : '';
+    return `mailto:${targetEmail}?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -360,7 +354,7 @@ ${JSON.stringify(payload, null, 2)}
       </section>
 
       {/* Main Container */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
+      <section className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 -mt-16 relative z-10">
         <div className="flex flex-col gap-8">
           
           {/* Upper Line: Contact Information Box (Squeezed & Sleek) */}
@@ -510,7 +504,7 @@ ${JSON.stringify(payload, null, 2)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-[#E6E0D4]"
+            className="w-full bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 md:p-10 shadow-xl border border-[#E6E0D4]"
           >
             {formState === 'success' && submittedOrder ? (
               /* Success & Order Receipt Confirmation */
@@ -649,7 +643,7 @@ ${JSON.stringify(payload, null, 2)}
                     <span className="text-[11px] text-stone-500 font-medium">Click to select & configure</span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                     {products.map((product) => {
                       const isChecked = Boolean(selectedItems[product.id]);
                       const currentConfig = selectedItems[product.id] || { tierIndex: 0, packCount: 1 };
@@ -669,19 +663,19 @@ ${JSON.stringify(payload, null, 2)}
                           {/* Item Card Header */}
                           <div 
                             onClick={() => toggleItemSelection(product)}
-                            className="p-2.5 sm:p-3 cursor-pointer select-none"
+                            className="p-2 sm:p-3 cursor-pointer select-none"
                           >
-                            <div className="flex items-start justify-between gap-1.5 mb-2">
+                            <div className="flex items-start justify-between gap-1 mb-1.5 sm:mb-2">
                               {/* Custom Styled Checkbox */}
                               <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-colors ${
                                 isChecked 
                                   ? 'bg-[#1B4332] text-white' 
                                   : 'border-2 border-stone-300 bg-white'
                               }`}>
-                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                                {isChecked && <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[3]" />}
                               </div>
 
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors ${
+                              <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full transition-colors ${
                                 isChecked 
                                   ? 'bg-[#1B4332] text-white' 
                                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
@@ -691,19 +685,19 @@ ${JSON.stringify(payload, null, 2)}
                             </div>
 
                             {/* Thumbnail & Title */}
-                            <div className="flex items-center gap-2.5">
+                            <div className="flex items-center gap-2 sm:gap-2.5">
                               <img 
                                 src={product.image} 
                                 alt={product.name} 
-                                className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 bg-stone-100 border border-stone-200/60"
+                                className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl object-cover flex-shrink-0 bg-stone-100 border border-stone-200/60"
                                 loading="lazy"
                               />
 
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-display text-xs sm:text-sm font-bold text-[#1B4332] leading-tight line-clamp-2">
+                                <h3 className="font-display text-[11px] sm:text-sm font-bold text-[#1B4332] leading-tight line-clamp-2">
                                   {product.name}
                                 </h3>
-                                <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5">
+                                <p className="text-[9px] sm:text-[11px] text-stone-500 mt-0.5">
                                   From <strong className="text-[#1B4332]">{product.price}</strong>
                                 </p>
                               </div>
@@ -718,10 +712,10 @@ ${JSON.stringify(payload, null, 2)}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="px-2.5 pb-2.5 pt-2 border-t border-emerald-900/10 bg-white/80 space-y-2"
+                                className="px-2 pb-2 pt-1.5 sm:px-2.5 sm:pb-2.5 sm:pt-2 border-t border-emerald-900/10 bg-white/80 space-y-1.5 sm:space-y-2"
                               >
                                 <div>
-                                  <p className="text-[9px] uppercase tracking-wider text-stone-500 font-bold mb-1">
+                                  <p className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-500 font-bold mb-1">
                                     Pack Size:
                                   </p>
                                   <div className="flex flex-col gap-1">
@@ -735,7 +729,7 @@ ${JSON.stringify(payload, null, 2)}
                                             e.stopPropagation();
                                             handleTierChange(product.id, idx);
                                           }}
-                                          className={`px-2 py-1 rounded-lg text-[10px] sm:text-[11px] font-bold transition-all flex items-center justify-between gap-1 ${
+                                          className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md sm:rounded-lg text-[9px] sm:text-[11px] font-bold transition-all flex items-center justify-between gap-1 ${
                                             isTierSelected
                                               ? 'bg-[#1B4332] text-white shadow-sm ring-1 ring-[#1B4332]'
                                               : 'bg-stone-50 text-stone-700 border border-stone-200 hover:border-[#1B4332]'
@@ -751,20 +745,20 @@ ${JSON.stringify(payload, null, 2)}
 
                                 {/* Number of Packs Stepper */}
                                 <div className="flex items-center justify-between pt-1 border-t border-stone-100">
-                                  <span className="text-[10px] text-stone-600 font-medium">Quantity:</span>
-                                  <div className="flex items-center gap-1.5">
+                                  <span className="text-[9px] sm:text-[10px] text-stone-600 font-medium">Quantity:</span>
+                                  <div className="flex items-center gap-1 sm:gap-1.5">
                                     <button
                                       type="button"
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         handlePackCountChange(product.id, -1);
                                       }}
-                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
+                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
                                       aria-label="Decrease quantity"
                                     >
-                                      <Minus className="w-3 h-3" />
+                                      <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                     </button>
-                                    <span className="w-5 text-center text-xs font-bold text-[#1B4332]">
+                                    <span className="w-4 sm:w-5 text-center text-[11px] sm:text-xs font-bold text-[#1B4332]">
                                       {currentConfig.packCount}
                                     </span>
                                     <button
@@ -773,10 +767,10 @@ ${JSON.stringify(payload, null, 2)}
                                         e.stopPropagation();
                                         handlePackCountChange(product.id, 1);
                                       }}
-                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
+                                      className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-700 transition-colors font-bold text-xs"
                                       aria-label="Increase quantity"
                                     >
-                                      <Plus className="w-3 h-3" />
+                                      <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                     </button>
                                   </div>
                                 </div>
