@@ -21,6 +21,7 @@ function orderApiPlugin() {
         req.on('end', async () => {
           try {
             const data = JSON.parse(body);
+            delete data.email;
             const accessKey =
               process.env.WEB3FORMS_ACCESS_KEY ||
               process.env.VITE_WEB3FORMS_ACCESS_KEY ||

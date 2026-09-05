@@ -7,6 +7,9 @@ export async function onRequestPost(context: {
 }) {
   try {
     const data = (await context.request.json()) as Record<string, any>;
+    // Ensure email is stripped from the backend payload
+    delete data.email;
+
     const accessKey =
       context.env.WEB3FORMS_ACCESS_KEY ||
       atob('ODkzZTQ5NzgtMTk0Yi00ODhiLTg1MjYtZDY5ZGU2YTJmNjBl');

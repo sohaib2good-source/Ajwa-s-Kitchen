@@ -32,7 +32,7 @@ interface OrderPayload {
   customer: {
     name: string;
     phone: string;
-    email: string;
+    email?: string;
   };
   fulfillment: {
     type: 'pickup' | 'delivery';
@@ -204,7 +204,6 @@ NEW ORDER REQUEST - ${orderId}
 --------------------------------------------------
 Customer Name: ${name}
 Phone / WhatsApp: ${phone}
-Email: ${email || 'Not provided'}
 Date: ${preferredDate}
 Fulfillment: ${fulfillmentType === 'delivery' ? `Delivery to: ${address}` : 'Store Pickup'}
 Service Area: ${config.contact.serviceArea}
@@ -215,14 +214,13 @@ ${itemsSummaryText}
 
 --------------------------------------------------
 APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
-(Excluding delivery fee; final confirmation via WhatsApp/Email)
+(Excluding delivery fee; final confirmation via WhatsApp)
 `.trim();
 
     const web3FormData = {
       subject: `New Order Request #${orderId} from ${name} (Rs. ${approximateTotal.toLocaleString()})`,
       from_name: "Ajwa's Kitchen Website",
       name,
-      email: email || undefined,
       phone,
       order_id: orderId,
       order_total: `Rs. ${approximateTotal.toLocaleString()}`,
@@ -304,6 +302,7 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
     if (submittedOrder.fulfillment.additionalNotes && submittedOrder.fulfillment.additionalNotes !== 'None') {
       msg += `*Notes:* ${submittedOrder.fulfillment.additionalNotes}\n`;
     }
+    return encodeURIComponent(msg);
   };
 
   return (
@@ -532,7 +531,7 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                 {/* Dispatch Action Button: WhatsApp */}
                 <div className="pt-2">
                   <a
-                    href={`https://wa.me/923116611055?text=${generateWhatsAppMessage()}`}
+                    href={`${config.contact.whatsappUrl}?text=${generateWhatsAppMessage()}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.99] text-center cursor-pointer"
