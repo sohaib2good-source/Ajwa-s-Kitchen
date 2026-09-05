@@ -1,8 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ChefHat, ShieldCheck, Sparkles, HeartHandshake, ArrowRight } from 'lucide-react';
-import { config } from '@/data/config';
-import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 
 const processItems = [
   {
@@ -188,22 +186,13 @@ export function Process() {
           <p className="text-stone-300 text-sm sm:text-base max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
             Order fresh, unhurried homemade savouries for your family, events, or high tea gatherings across Lahore.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <div className="flex items-center justify-center">
             <Link
               to="/menu"
-              className="w-full sm:w-auto px-8 py-3 rounded-full bg-white text-[#1B4332] hover:bg-[#FDFBF7] font-bold text-sm shadow-md transition-transform active:scale-95"
+              className="px-8 py-3 rounded-full bg-white text-[#1B4332] hover:bg-[#FDFBF7] font-bold text-sm shadow-md transition-transform active:scale-95"
             >
               Explore Full Menu
             </Link>
-            <a
-              href={config.contact.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-transform active:scale-95"
-            >
-              <WhatsAppIcon className="w-4 h-4 fill-current" />
-              <span>Order on WhatsApp</span>
-            </a>
           </div>
         </div>
       </section>

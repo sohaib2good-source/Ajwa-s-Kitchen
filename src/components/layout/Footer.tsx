@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { config } from '@/data/config';
-import { Instagram, Facebook, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, Mail } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 
 export function Footer() {
@@ -55,14 +55,6 @@ export function Footer() {
           <div>
             <h4 className="text-[#A67C52] font-semibold mb-6 tracking-widest text-xs uppercase">Connect</h4>
             <div className="space-y-3 text-sm mb-6">
-              {config.contact.phone && config.contact.phone !== "[Phone Number]" && (
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-[#A67C52]" />
-                  <a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} className="hover:text-[#FDFBF7] transition-colors">
-                    {config.contact.phone}
-                  </a>
-                </div>
-              )}
               {config.contact.whatsappUrl && (
                 <div className="flex items-center gap-2">
                   <WhatsAppIcon className="h-4 w-4 text-[#25D366] fill-current" />

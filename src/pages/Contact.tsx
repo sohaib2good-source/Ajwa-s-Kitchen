@@ -35,7 +35,7 @@ interface OrderPayload {
     email?: string;
   };
   fulfillment: {
-    type: 'pickup' | 'delivery';
+    type: 'pickup' | 'delivery' | 'undecided';
     deliveryAddress: string;
     preferredDate: string;
     serviceArea: string;
@@ -73,7 +73,7 @@ export function Contact() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [preferredDate, setPreferredDate] = useState('');
-  const [fulfillmentType, setFulfillmentType] = useState<'pickup' | 'delivery'>('pickup');
+  const [fulfillmentType, setFulfillmentType] = useState<'pickup' | 'delivery' | 'undecided'>('pickup');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
 
@@ -166,13 +166,13 @@ export function Contact() {
       createdAt: new Date().toISOString(),
       customer: {
         name,
-        phone,
+        phone: phone.trim() || 'Not provided',
         email: email || 'Not provided'
       },
       fulfillment: {
         type: fulfillmentType,
-        deliveryAddress: fulfillmentType === 'delivery' ? address : 'Store Pickup',
-        preferredDate,
+        deliveryAddress: fulfillmentType === 'delivery' ? (address.trim() || 'To be shared on WhatsApp') : fulfillmentType === 'pickup' ? 'Store Pickup' : 'Flexible / To Be Decided',
+        preferredDate: preferredDate || 'Flexible / ASAP',
         serviceArea: config.contact.serviceArea,
         additionalNotes: notes || 'None'
       },
@@ -199,13 +199,19 @@ export function Contact() {
       .map((item, idx) => `${idx + 1}. ${item.product.name} (${item.tier.quantity}) × ${item.packCount} pack(s) = Rs. ${item.totalPrice.toLocaleString()}`)
       .join('\n');
 
+    const fulfillmentText = fulfillmentType === 'delivery' 
+      ? `Delivery to: ${address.trim() || 'To be shared on WhatsApp'}` 
+      : fulfillmentType === 'pickup' 
+      ? 'Store Pickup' 
+      : 'Flexible / To Be Decided';
+
     const emailMessage = `
 NEW ORDER REQUEST - ${orderId}
 --------------------------------------------------
 Customer Name: ${name}
-Phone / WhatsApp: ${phone}
-Date: ${preferredDate}
-Fulfillment: ${fulfillmentType === 'delivery' ? `Delivery to: ${address}` : 'Store Pickup'}
+Phone / WhatsApp: ${phone.trim() || 'Not provided'}
+Date: ${preferredDate || 'Flexible / ASAP'}
+Fulfillment: ${fulfillmentText}
 Service Area: ${config.contact.serviceArea}
 Special Requests: ${notes || 'None'}
 
@@ -221,12 +227,12 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
       subject: `New Order Request #${orderId} from ${name} (Rs. ${approximateTotal.toLocaleString()})`,
       from_name: "Ajwa's Kitchen Website",
       name,
-      phone,
+      phone: phone.trim() || 'Not provided',
       order_id: orderId,
       order_total: `Rs. ${approximateTotal.toLocaleString()}`,
       order_items: itemsSummaryText,
-      fulfillment_type: fulfillmentType === 'delivery' ? `Delivery (${address})` : 'Store Pickup',
-      preferred_date: preferredDate,
+      fulfillment_type: fulfillmentText,
+      preferred_date: preferredDate || 'Flexible / ASAP',
       special_notes: notes || 'None',
       message: emailMessage,
     };
@@ -291,9 +297,16 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
     if (!submittedOrder) return '';
     let msg = `*NEW ORDER REQUEST - ${submittedOrder.orderId}*\n\n`;
     msg += `*Customer:* ${submittedOrder.customer.name}\n`;
-    msg += `*Phone:* ${submittedOrder.customer.phone}\n`;
+    if (submittedOrder.customer.phone && submittedOrder.customer.phone !== 'Not provided') {
+      msg += `*Phone:* ${submittedOrder.customer.phone}\n`;
+    }
     msg += `*Date:* ${submittedOrder.fulfillment.preferredDate}\n`;
-    msg += `*Type:* ${submittedOrder.fulfillment.type === 'delivery' ? `Delivery (${submittedOrder.fulfillment.deliveryAddress})` : 'Self Pickup'}\n\n`;
+    const fulfillmentDesc = submittedOrder.fulfillment.type === 'delivery' 
+      ? `Delivery (${submittedOrder.fulfillment.deliveryAddress})` 
+      : submittedOrder.fulfillment.type === 'pickup' 
+      ? 'Self Pickup' 
+      : 'Flexible / Discuss on WhatsApp';
+    msg += `*Type:* ${fulfillmentDesc}\n\n`;
     msg += `*ITEMS ORDERED:*\n`;
     submittedOrder.items.forEach(item => {
       msg += `• ${item.name} (${item.selectedQuantity}) × ${item.packs} = ${item.formattedTotalPrice}\n`;
@@ -529,14 +542,14 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                 </div>
 
                 {/* Dispatch Action Button: WhatsApp */}
-                <div className="pt-2">
+                <div className="pt-2 flex justify-center">
                   <a
                     href={`${config.contact.whatsappUrl}?text=${generateWhatsAppMessage()}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.99] text-center cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 text-center cursor-pointer"
                   >
-                    <WhatsAppIcon className="w-5 h-5 fill-current" />
+                    <WhatsAppIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-current" />
                     <span>Send Order on WhatsApp</span>
                   </a>
                 </div>
@@ -782,7 +795,7 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-xs font-semibold text-[#1B4332] mb-1.5">
-                        Full Name <span className="text-red-500">*</span>
+                        Name <span className="text-red-500">*</span>
                       </label>
                       <input 
                         type="text" 
@@ -791,18 +804,17 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-[#F9F7F2] border border-[#E6E0D4] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent transition-shadow"
-                        placeholder="Your full name"
+                        placeholder="Your name"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className="block text-xs font-semibold text-[#1B4332] mb-1.5">
-                        Phone / WhatsApp <span className="text-red-500">*</span>
+                        Phone / WhatsApp <span className="text-stone-500 font-normal text-[11px]">(Optional)</span>
                       </label>
                       <input 
                         type="tel" 
                         id="phone" 
-                        required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full bg-[#F9F7F2] border border-[#E6E0D4] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent transition-shadow"
@@ -828,12 +840,11 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
 
                     <div>
                       <label htmlFor="date" className="block text-xs font-semibold text-[#1B4332] mb-1.5">
-                        Preferred Date <span className="text-red-500">*</span>
+                        Preferred Date <span className="text-stone-500 font-normal text-[11px]">(Optional)</span>
                       </label>
                       <input 
                         type="date" 
                         id="date" 
-                        required
                         value={preferredDate}
                         onChange={(e) => setPreferredDate(e.target.value)}
                         className="w-full bg-[#F9F7F2] border border-[#E6E0D4] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent transition-shadow"
@@ -844,33 +855,32 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="fulfillment" className="block text-xs font-semibold text-[#1B4332] mb-1.5">
-                        Pickup / Delivery <span className="text-red-500">*</span>
+                        Pickup / Delivery <span className="text-stone-500 font-normal text-[11px]">(Optional)</span>
                       </label>
                       <select 
                         id="fulfillment" 
-                        required
                         value={fulfillmentType}
-                        onChange={(e) => setFulfillmentType(e.target.value as 'pickup' | 'delivery')}
+                        onChange={(e) => setFulfillmentType(e.target.value as 'pickup' | 'delivery' | 'undecided')}
                         className="w-full bg-[#F9F7F2] border border-[#E6E0D4] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent transition-shadow"
                       >
                         <option value="pickup">Self Pickup</option>
                         <option value="delivery">Delivery ({config.contact.serviceArea})</option>
+                        <option value="undecided">Decide Later / Discuss on WhatsApp</option>
                       </select>
                     </div>
 
                     {fulfillmentType === 'delivery' && (
                       <div>
                         <label htmlFor="address" className="block text-xs font-semibold text-[#1B4332] mb-1.5">
-                          Delivery Address in Lahore <span className="text-red-500">*</span>
+                          Delivery Address in Lahore <span className="text-stone-500 font-normal text-[11px]">(Optional)</span>
                         </label>
                         <input 
                           type="text" 
                           id="address" 
-                          required
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
                           className="w-full bg-[#F9F7F2] border border-[#E6E0D4] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent transition-shadow"
-                          placeholder="House, Street, Area / Sector"
+                          placeholder="House, Street, Area / Sector (or share on WhatsApp)"
                         />
                       </div>
                     )}
@@ -892,23 +902,25 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                 </div>
 
                 {/* Submit Button */}
-                <button 
-                  type="submit" 
-                  disabled={formState === 'submitting'}
-                  className="w-full bg-[#1B4332] text-white rounded-2xl py-3.5 sm:py-4 font-bold text-base sm:text-lg hover:bg-[#143526] transition-all shadow-md active:scale-[0.99] disabled:bg-[#1B4332]/70 flex justify-center items-center gap-2 cursor-pointer"
-                >
-                  {formState === 'submitting' ? (
-                    <>
-                      <Loader2 className="animate-spin h-5 w-5" />
-                      <span>Generating Order Request...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Generate Order & Calculate (Rs. {approximateTotal.toLocaleString()})</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+                <div className="flex justify-center pt-2">
+                  <button 
+                    type="submit" 
+                    disabled={formState === 'submitting'}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-[#1B4332] hover:bg-[#143526] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 text-center cursor-pointer disabled:bg-[#1B4332]/70 disabled:cursor-not-allowed"
+                  >
+                    {formState === 'submitting' ? (
+                      <>
+                        <Loader2 className="animate-spin w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                        <span>Generating Order Request...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Generate Order & Calculate (Rs. {approximateTotal.toLocaleString()})</span>
+                        <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                      </>
+                    )}
+                  </button>
+                </div>
               </form>
             )}
           </motion.div>

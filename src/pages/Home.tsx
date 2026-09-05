@@ -53,47 +53,103 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative lg:h-[600px] w-full grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6"
+              className="relative w-full grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 lg:h-[580px] lg:grid-rows-2"
             >
-              <div className="row-span-2 rounded-[2rem] overflow-hidden shadow-lg relative group">
+              {/* Card 1: Chicken Shami (Featured wide on mobile, tall left column on desktop) */}
+              <Link
+                to="/contact?item=chicken-shami-kebab"
+                className="col-span-2 lg:col-span-1 lg:row-span-2 relative h-52 sm:h-64 lg:h-full rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group block active:scale-[0.99]"
+                aria-label="Order Chicken Shami Kebab"
+              >
                 <img 
                   src="/chicken-shami.webp" 
-                  alt="Chicken Shami" 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt="Chicken Shami Kebab" 
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="eager"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 p-6 sm:p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-2xl text-[#FDFBF7] font-bold drop-shadow-md">Chicken Shami</h3>
-                  <p className="text-[#A67C52] text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Rich & Spiced</p>
+                {/* Clean gradient starting at bottom 45% so 55% of the food is completely unshaded and vivid */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#143225]/90 via-[#1B4332]/30 via-45% to-transparent"></div>
+                
+                {/* Floating pill badge */}
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#1B4332] text-[11px] sm:text-xs font-bold tracking-wide shadow-sm border border-white/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A67C52] animate-pulse"></span>
+                    Bestseller
+                  </span>
                 </div>
-              </div>
-              <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
+
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 z-10">
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-[#FDFBF7] font-bold drop-shadow-md">
+                    Chicken Shami
+                  </h3>
+                  <p className="text-[#D4B996] text-xs sm:text-sm font-medium mt-0.5 sm:mt-1 drop-shadow">
+                    Rich & Spiced • Made Fresh to Order
+                  </p>
+                </div>
+              </Link>
+
+              {/* Card 2: Mini Aloo Samosa */}
+              <Link
+                to="/contact?item=mini-aloo-samosa"
+                className="col-span-1 relative h-36 sm:h-44 lg:h-full rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group block active:scale-[0.99]"
+                aria-label="Order Mini Aloo Samosa"
+              >
                 <img 
                   src="/allo-samosa.webp" 
                   alt="Mini Aloo Samosa" 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="eager"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Mini Aloo Samosa</h3>
-                  <p className="text-[#A67C52] text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Golden & Crispy</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#143225]/90 via-[#1B4332]/30 via-45% to-transparent"></div>
+                
+                <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-[#1B4332] text-[10px] sm:text-xs font-bold shadow-sm border border-white/60">
+                    Crispy & Golden
+                  </span>
                 </div>
-              </div>
-              <div className="rounded-[2rem] overflow-hidden shadow-lg relative group">
+
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 lg:p-6 z-10">
+                  <h3 className="font-display text-sm sm:text-base lg:text-xl text-[#FDFBF7] font-bold drop-shadow-md leading-tight">
+                    Mini Aloo Samosa
+                  </h3>
+                  <p className="text-[#D4B996] text-[10px] sm:text-xs font-medium mt-0.5 drop-shadow">
+                    Flaky & Savoury
+                  </p>
+                </div>
+              </Link>
+
+              {/* Card 3: Chicken Gola Kebab */}
+              <Link
+                to="/contact?item=chicken-gola-kebab"
+                className="col-span-1 relative h-36 sm:h-44 lg:h-full rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group block active:scale-[0.99]"
+                aria-label="Order Chicken Gola Kebab"
+              >
                 <img 
                   src="/golla-kebab.webp" 
                   alt="Chicken Gola Kebab" 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="eager"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="font-display text-xl text-[#FDFBF7] font-bold drop-shadow-md">Chicken Gola Kebab</h3>
-                  <p className="text-[#A67C52] text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Tender & Juicy</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#143225]/90 via-[#1B4332]/30 via-45% to-transparent"></div>
+                
+                <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-[#1B4332] text-[10px] sm:text-xs font-bold shadow-sm border border-white/60">
+                    Tender & Juicy
+                  </span>
                 </div>
-              </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 lg:p-6 z-10">
+                  <h3 className="font-display text-sm sm:text-base lg:text-xl text-[#FDFBF7] font-bold drop-shadow-md leading-tight">
+                    Chicken Gola Kebab
+                  </h3>
+                  <p className="text-[#D4B996] text-[10px] sm:text-xs font-medium mt-0.5 drop-shadow">
+                    Melt-in-Mouth
+                  </p>
+                </div>
+              </Link>
             </motion.div>
 
           </div>
