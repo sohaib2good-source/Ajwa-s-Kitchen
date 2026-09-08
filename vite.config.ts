@@ -25,7 +25,7 @@ function orderApiPlugin() {
             const accessKey =
               process.env.WEB3FORMS_ACCESS_KEY ||
               process.env.VITE_WEB3FORMS_ACCESS_KEY ||
-              Buffer.from('ODkzZTQ5NzgtMTk0Yi00ODhiLTg1MjYtZDY5ZGU2YTJmNjBl', 'base64').toString('utf-8');
+              Buffer.from('MmZkYjc3MGItMTdjOC00MTljLTlhYjMtMjMyZDQ3ODU3NzZh', 'base64').toString('utf-8');
 
             const web3Response = await fetch('https://api.web3forms.com/submit', {
               method: 'POST',

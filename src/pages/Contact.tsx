@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { config } from '@/data/config';
@@ -81,6 +81,7 @@ export function Contact() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [validationError, setValidationError] = useState<string | null>(null);
   const [submittedOrder, setSubmittedOrder] = useState<OrderPayload | null>(null);
+  const sentOrderIdsRef = useRef<Set<string>>(new Set());
 
   // Toggle item checkbox
   const toggleItemSelection = (product: Product) => {
@@ -195,101 +196,98 @@ export function Contact() {
       }
     };
 
-    const itemsSummaryText = calculatedItems
-      .map((item, idx) => `${idx + 1}. ${item.product.name} (${item.tier.quantity}) × ${item.packCount} pack(s) = Rs. ${item.totalPrice.toLocaleString()}`)
-      .join('\n');
+    setSubmittedOrder(payload);
+    setFormState('success');
+    window.scrollTo({ top: 300, behavior: 'smooth' });
+  };
 
-    const fulfillmentText = fulfillmentType === 'delivery' 
-      ? `Delivery to: ${address.trim() || 'To be shared on WhatsApp'}` 
-      : fulfillmentType === 'pickup' 
-      ? 'Store Pickup' 
-      : 'Flexible / To Be Decided';
+  // Obfuscated default Web3Forms access key for Ajwa's Kitchen (2fdb770b-17c8-419c-9ab3-232d4785776a)
+  const DEFAULT_WEB3FORMS_KEY = atob('MmZkYjc3MGItMTdjOC00MTljLTlhYjMtMjMyZDQ3ODU3NzZh');
 
-    const emailMessage = `
-NEW ORDER REQUEST - ${orderId}
+  // Silent background order email dispatch to Web3Forms
+  const sendSilentOrderEmail = (order: OrderPayload) => {
+    try {
+      const accessKey =
+        import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || DEFAULT_WEB3FORMS_KEY;
+
+      const itemsSummaryText = order.items
+        .map(
+          (item, idx) =>
+            `${idx + 1}. ${item.name} (${item.selectedQuantity}) × ${item.packs} pack(s) = ${item.formattedTotalPrice}`
+        )
+        .join('\n');
+
+      const fulfillmentText =
+        order.fulfillment.type === 'delivery'
+          ? `Delivery to: ${order.fulfillment.deliveryAddress}`
+          : order.fulfillment.type === 'pickup'
+          ? 'Store Pickup'
+          : 'Flexible / To Be Decided';
+
+      const emailMessage = `
+NEW ORDER REQUEST - ${order.orderId}
 --------------------------------------------------
-Customer Name: ${name}
-Phone / WhatsApp: ${phone.trim() || 'Not provided'}
-Date: ${preferredDate || 'Flexible / ASAP'}
+Customer Name: ${order.customer.name}
+Phone / WhatsApp: ${order.customer.phone}
+Email: ${order.customer.email || 'Not provided'}
+Date: ${order.fulfillment.preferredDate}
 Fulfillment: ${fulfillmentText}
-Service Area: ${config.contact.serviceArea}
-Special Requests: ${notes || 'None'}
+Service Area: ${order.fulfillment.serviceArea}
+Special Requests: ${order.fulfillment.additionalNotes}
 
 ITEMS ORDERED:
 ${itemsSummaryText}
 
 --------------------------------------------------
-APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
-(Excluding delivery fee; final confirmation via WhatsApp)
+APPROXIMATE TOTAL: ${order.summary.formattedTotal}
+(Customer clicked "Send Order on WhatsApp")
 `.trim();
 
-    const web3FormData = {
-      subject: `New Order Request #${orderId} from ${name} (Rs. ${approximateTotal.toLocaleString()})`,
-      from_name: "Ajwa's Kitchen Website",
-      name,
-      phone: phone.trim() || 'Not provided',
-      order_id: orderId,
-      order_total: `Rs. ${approximateTotal.toLocaleString()}`,
-      order_items: itemsSummaryText,
-      fulfillment_type: fulfillmentText,
-      preferred_date: preferredDate || 'Flexible / ASAP',
-      special_notes: notes || 'None',
-      message: emailMessage,
-    };
+      const web3FormData: Record<string, any> = {
+        access_key: accessKey,
+        subject: `New Order Request #${order.orderId} from ${order.customer.name} (${order.summary.formattedTotal})`,
+        from_name: "Ajwa's Kitchen Website",
+        name: order.customer.name,
+        phone: order.customer.phone,
+        order_id: order.orderId,
+        order_total: order.summary.formattedTotal,
+        order_items: itemsSummaryText,
+        fulfillment_type: fulfillmentText,
+        delivery_address: order.fulfillment.deliveryAddress,
+        preferred_date: order.fulfillment.preferredDate,
+        special_notes: order.fulfillment.additionalNotes,
+        message: emailMessage,
+      };
 
-    try {
-      // 1. Primary: Call secure backend proxy /api/submit-order (keeps API key hidden from public view)
-      const res = await fetch('/api/submit-order', {
+      // Only attach email field if valid format to avoid Web3Forms validation errors
+      if (order.customer.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(order.customer.email)) {
+        web3FormData.email = order.customer.email;
+      }
+
+      // Silent client-side dispatch with keepalive
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify(web3FormData),
+        keepalive: true,
+      }).catch((err) => {
+        console.warn('Background email dispatch notice:', err);
       });
-
-      if (!res.ok) {
-        // Fallback: direct Web3Forms submission if serverless endpoint is not present
-        const fallbackKey =
-          import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
-          atob('ODkzZTQ5NzgtMTk0Yi00ODhiLTg1MjYtZDY5ZGU2YTJmNjBl');
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            access_key: fallbackKey,
-            ...web3FormData,
-          }),
-        });
-      }
     } catch (err) {
-      console.warn('Backend proxy unavailable, attempting direct dispatch:', err);
-      try {
-        const fallbackKey =
-          import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
-          atob('ODkzZTQ5NzgtMTk0Yi00ODhiLTg1MjYtZDY5ZGU2YTJmNjBl');
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            access_key: fallbackKey,
-            ...web3FormData,
-          }),
-        });
-      } catch (fallbackErr) {
-        console.error('Failed to dispatch order email:', fallbackErr);
-      }
+      console.warn('Background email dispatch error:', err);
     }
+  };
 
-    setSubmittedOrder(payload);
-    setFormState('success');
-    window.scrollTo({ top: 300, behavior: 'smooth' });
+  // Triggered silently in the background when customer clicks "Send Order on WhatsApp"
+  const handleWhatsAppClick = () => {
+    if (!submittedOrder) return;
+    if (!sentOrderIdsRef.current.has(submittedOrder.orderId)) {
+      sentOrderIdsRef.current.add(submittedOrder.orderId);
+      sendSilentOrderEmail(submittedOrder);
+    }
   };
 
   // WhatsApp Order Message format
@@ -547,6 +545,7 @@ APPROXIMATE TOTAL: Rs. ${approximateTotal.toLocaleString()}
                     href={`${config.contact.whatsappUrl}?text=${generateWhatsAppMessage()}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={handleWhatsAppClick}
                     className="inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 text-center cursor-pointer"
                   >
                     <WhatsAppIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-current" />

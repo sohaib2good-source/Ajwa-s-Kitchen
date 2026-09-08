@@ -12,7 +12,7 @@ export async function onRequestPost(context: {
 
     const accessKey =
       context.env.WEB3FORMS_ACCESS_KEY ||
-      atob('ODkzZTQ5NzgtMTk0Yi00ODhiLTg1MjYtZDY5ZGU2YTJmNjBl');
+      atob('MmZkYjc3MGItMTdjOC00MTljLTlhYjMtMjMyZDQ3ODU3NzZh');
 
     const web3Response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
